@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController(value = "/")
+@CrossOrigin("*")
 public class SearchProductController
 {
     @Autowired
@@ -36,6 +37,6 @@ public class SearchProductController
     @GetMapping(value = "/findBySearch/{name}")
     public Iterable<Product> findBySearch(@PathVariable("name") String name)
     {
-        return searchRepository.findByName(name);
+        return searchRepository.findByNameOrCategoryOrAdditionalDetails(name,name,name);
     }
 }
